@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA08F1312A1742930046827A /* HabitsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA08F1302A1742930046827A /* HabitsStore.swift */; };
 		FA76867B2A138C0E0089DBCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA76867A2A138C0E0089DBCD /* AppDelegate.swift */; };
 		FA76867D2A138C0E0089DBCD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA76867C2A138C0E0089DBCD /* SceneDelegate.swift */; };
 		FA7686842A138C120089DBCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA7686832A138C120089DBCD /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA08F1302A1742930046827A /* HabitsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsStore.swift; sourceTree = "<group>"; };
 		FA7686772A138C0E0089DBCD /* MyHabits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyHabits.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA76867A2A138C0E0089DBCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA76867C2A138C0E0089DBCD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +39,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA08F12F2A1742760046827A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FA08F1302A1742930046827A /* HabitsStore.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		FA76866E2A138C0E0089DBCD = {
 			isa = PBXGroup;
 			children = (
@@ -59,6 +69,7 @@
 				FAB356552A139563002D618D /* Application */,
 				FAB356562A13968F002D618D /* SupportingFiles */,
 				FAB356572A139719002D618D /* Controllers */,
+				FA08F12F2A1742760046827A /* Model */,
 			);
 			path = MyHabits;
 			sourceTree = "<group>";
@@ -164,6 +175,7 @@
 				FA76867B2A138C0E0089DBCD /* AppDelegate.swift in Sources */,
 				FA76867D2A138C0E0089DBCD /* SceneDelegate.swift in Sources */,
 				FAB356522A138E43002D618D /* HabitsViewController.swift in Sources */,
+				FA08F1312A1742930046827A /* HabitsStore.swift in Sources */,
 				FAB356542A138E6C002D618D /* InfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
