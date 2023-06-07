@@ -29,7 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let tabViewController = UITabBarController()
         tabViewController.viewControllers = [novigationHabitsController, novigationInfoController]
-        tabViewController.tabBar.tintColor = UIColor.systemBlue
+        tabViewController.tabBar.tintColor = UIColor.purple
  
         window.rootViewController =  tabViewController
         
