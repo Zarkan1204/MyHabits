@@ -25,7 +25,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
     
     private let waterHeaderLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "SFProText-Regular", size: 17)
+        label.font = UIFont(name: "Avenir Next", size: 17)
         label.font = UIFont.systemFont(ofSize: 17)
         label.text = "Выпить стакан воды"
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -35,7 +35,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
     
     private let waterRegularLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "SFProText-Regular", size: 12)
+        label.font = UIFont(name: "Avenir Next", size: 12)
         label.font = UIFont.systemFont(ofSize: 12)
         label.text = "Каждый день в 7:30"
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -45,7 +45,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
     
     private let waterCountLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "SFProText-Regular", size: 13)
+        label.font = UIFont(name: "Avenir Next", size: 13)
         label.font = UIFont.systemFont(ofSize: 13)
         label.text = "Счетчик: 0"
         label.translatesAutoresizingMaskIntoConstraints = false

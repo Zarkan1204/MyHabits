@@ -9,6 +9,9 @@ import UIKit
 
 class HabitsViewController: UIViewController {
     
+    let store = HabitsStore.shared
+    let progressCollectionViewCell = ProgressCollectionViewCell()
+    
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -17,7 +20,10 @@ class HabitsViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .systemGray6
         collectionView.register(
-                   HabitCollectionViewCell.self, forCellWithReuseIdentifier: HabitCollectionViewCell.identifier)
+            HabitCollectionViewCell.self, forCellWithReuseIdentifier: HabitCollectionViewCell.identifier)
+        collectionView.register(
+            ProgressCollectionViewCell.self, forCellWithReuseIdentifier: ProgressCollectionViewCell.identifier)
+        
         collectionView.dataSource = self
         collectionView.delegate = self
         
@@ -31,6 +37,11 @@ class HabitsViewController: UIViewController {
         prepareViewController()
         setupViews()
         setupConstrains()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        collectionView.reloadData()
     }
     
     private func prepareViewController() {
@@ -48,6 +59,16 @@ class HabitsViewController: UIViewController {
         navigationController?.pushViewController(habitViewController, animated: true)
     }
     
+    @objc func reloadCollectionView() {
+        collectionView.reloadData()
+    }
+    
+    private func addTwoHabbit(){
+        store.habits.removeAll()
+        store.habits.append(Habit(name: "Погладь кота", date: Date(), color: .red))
+        store.habits.append(Habit(name: "Сходить в магазин", date: Date(), color: .purple))
+    }
+    
     private func setupViews() {
         view.addSubview(collectionView)
     }
@@ -63,12 +84,8 @@ class HabitsViewController: UIViewController {
 }
 
 extension HabitsViewController: UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        2
-    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         if section == 0 {
             return 1
         } else {
@@ -76,9 +93,41 @@ extension HabitsViewController: UICollectionViewDataSource {
         }
     }
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        2
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: HabitCollectionViewCell.self), for: indexPath) as! HabitCollectionViewCell
-        return cell
+        
+        if  indexPath.section == 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProgressCollectionViewCell.identifier, for: indexPath) as! ProgressCollectionViewCell
+            cell.setProgress(with: store.todayProgress)
+            return cell
+        }
+        else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HabitCollectionViewCell.identifier, for: indexPath) as! HabitCollectionViewCell
+            
+            cell.setupCell(habit: store.habits[indexPath.item]){
+                self.collectionView.reloadData()
+            }
+            cell.onStateBtnClick = {
+                self.collectionView.reloadData()
+            }
+            cell.editHabit = {
+                let detailVC = HabitDetailsViewController()
+                detailVC.habit = self.store.habits[indexPath.item]
+                detailVC.numberOfHabit = indexPath.item
+                self.navigationController?.pushViewController(detailVC, animated: true)
+            }
+            return cell
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ProgressCollectionViewCell.identifier, for: indexPath) as! ProgressCollectionViewCell
+        
+        header.setProgress(with: store.todayProgress)
+        return header
     }
 }
 
